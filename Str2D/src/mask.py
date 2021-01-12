@@ -118,8 +118,9 @@ class Mask:
                           for elt in pattern])
         return mask
 
-    @staticmethod
+    @classmethod
     def from_indices(
+            cls,
             size: int = 0,
             indices_to_punch: Iterable[int] = None,
 ) -> 'Mask':
@@ -142,7 +143,7 @@ class Mask:
         _mitp2 = min(indices_to_punch)
         assert min(indices_to_punch) >= -size, \
             f'some of the negative indices provided are too small: {_mitp2} < -{size}'
-        mask = Mask(size=size)
+        mask = cls(size=size)
         pattern = [False for _ in range(size)]
         for pos_to_punch in indices_to_punch:
             pattern[pos_to_punch] = True
