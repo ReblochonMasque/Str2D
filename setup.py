@@ -1,11 +1,11 @@
 from distutils.core import setup
 
 setup(
-    name='Str2D',
+    name='src',
     version='0.1',
     author='Sean Smith',
     author_email='pirsquared.snv@gmail.com',
-    packages=['str2d'],
+    packages=['src'],
     license='Creative Commons Attribution-Noncommercial-Share Alike license',
     long_description=open('README.rst').read(),
     setup_requires=['pytest-runner'],

@@ -1,4 +1,4 @@
-from str2d import utils
+from src import utils
 from functools import partial
 
 

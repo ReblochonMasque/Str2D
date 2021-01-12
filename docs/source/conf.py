@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# Str2D documentation build configuration file, created by
+# src documentation build configuration file, created by
 # sphinx-quickstart on Fri Dec 29 14:25:04 2017.
 #
 # This file is execfile()d with the current directory set to its
@@ -54,7 +54,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'Str2D'
+project = 'src'
 copyright = '2017, Sean Smith'
 author = 'Sean Smith'
 
@@ -152,7 +152,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'Str2D.tex', 'Str2D Documentation',
+    (master_doc, 'src.tex', 'src Documentation',
      'Sean Smith', 'manual'),
 ]
 
@@ -162,7 +162,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'str2d', 'Str2D Documentation',
+    (master_doc, 'src', 'src Documentation',
      [author], 1)
 ]
 
@@ -173,8 +173,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'Str2D', 'Str2D Documentation',
-     author, 'Str2D', 'One line description of project.',
+    (master_doc, 'src', 'src Documentation',
+     author, 'src', 'One line description of project.',
      'Miscellaneous'),
 ]
 

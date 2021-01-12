@@ -1,6 +1,6 @@
-import str2d
-from str2d import Str2D
-from str2d import utils
+import src
+from src import Str2D
+from src import utils
 from string import ascii_letters, digits
 from functools import partial
 

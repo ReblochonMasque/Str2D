@@ -1,7 +1,7 @@
 import unittest
 
-from masking import Mask
-from masking import SOLID, PUNCHED
+from src import Mask
+from src import SOLID, PUNCHED
 
 
 # keep track of original defaults to reset them in tearDown()
@@ -413,6 +413,7 @@ class TestMaskUsage(TestMaskBase):
         self.assertEqual(expected, mask.invert().apply_to(input_str, substitute=' '))
 
     # -------------- END TEST apply_to() -----------------------------------------
+
 
 if __name__ == '__main__':
     unittest.main()
