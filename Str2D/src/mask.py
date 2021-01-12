@@ -81,8 +81,9 @@ class Mask:
                                    for perf in self._mask])
         return inverted_mask
 
-    @staticmethod
+    @classmethod
     def from_pattern(
+            cls,
             pattern: Sequence = '',
             values_to_punch: Iterable = '^',
     ) -> 'Mask':
@@ -113,7 +114,7 @@ class Mask:
         assert pattern is not None, 'pattern must not be None'
         assert len(pattern) > 0, \
             f"you must provide a valid pattern, the pattern provides had size={len(pattern)}"
-        mask = Mask(size=len(pattern))
+        mask = cls(size=len(pattern))
         mask._punch_mask([True if elt in values_to_punch else False
                           for elt in pattern])
         return mask
