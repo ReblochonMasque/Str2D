@@ -88,7 +88,7 @@ class Mask:
             values_to_punch: Iterable = '^',
     ) -> 'Mask':
         """Mask factory that makes and returns a new Mask object from a pattern
-        of values, a sequence, that can be compared to the values in to_punch to
+        of values, a sequence, that can be compared to the values in `to_punch` to
         determine which positions to punch, and which to retain solid
 
         :param pattern: a Sequence whose elements indicate where to punch and
@@ -109,7 +109,7 @@ class Mask:
 
         :return: A new Mask object representative of pattern
         """
-        # ? opimization if values_to_punch is large > 64, maybe?:
+        # ? optimization if values_to_punch is large > 64, maybe?:
         # _to_punch = set([elt for elt in values_to_punch])
         assert pattern is not None, 'pattern must not be None'
         assert len(pattern) > 0, \
@@ -124,7 +124,7 @@ class Mask:
             cls,
             size: int = 0,
             indices_to_punch: Iterable[int] = None,
-) -> 'Mask':
+    ) -> 'Mask':
         """Mask factory that makes a new Mask object where the positions to
         punch are at the given indices.
 
@@ -138,12 +138,12 @@ class Mask:
         """
         assert size is not None and size > 0, \
             f"a Mask must have a size > 0, the size provided was size={size}"
-        _mitp1 = max(indices_to_punch)
-        assert max(indices_to_punch) < size, \
-            f'some of the positive indices provided are too large: {_mitp1} >= {size}'
-        _mitp2 = min(indices_to_punch)
-        assert min(indices_to_punch) >= -size, \
-            f'some of the negative indices provided are too small: {_mitp2} < -{size}'
+        _max_index = max(indices_to_punch)
+        assert _max_index < size, \
+            f'some of the positive indices provided are too large: {_max_index} >= {size}'
+        _min_index = min(indices_to_punch)
+        assert _min_index >= -size, \
+            f'some of the negative indices provided are too small: {_min_index} < -{size}'
         mask = cls(size=size)
         pattern = [False for _ in range(size)]
         for pos_to_punch in indices_to_punch:
