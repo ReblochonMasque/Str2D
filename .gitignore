@@ -116,4 +116,4 @@ str2d-docs
 .mypy_cache/
 masking/__pycache__/
 Str2D/src/__pycache__/
-Str2D/tests/tests_stencils/__pycache__/
+Str2D/tests/test_stencils/__pycache__/

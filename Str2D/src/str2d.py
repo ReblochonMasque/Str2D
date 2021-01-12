@@ -1,5 +1,6 @@
 from functools import reduce
 from Str2D.src import utils
+from Str2D.src.mask import Mask
 from pandas import DataFrame, Series
 from numpy import ndarray
 
@@ -1183,12 +1184,6 @@ class Str2D(object):
 
 
 if __name__ == '__main__':
-
-    # >>> s = Str2D('''abc\n123\nghi''')
-    # ... Str2D.hjoin('|', [s, s.roll(n=1, axis=0), s.roll(n=1, axis=1)])
-    # abc | 123 | bca
-    # 123 | ghi | 231
-    # ghi | abc | hig
 
     print("running str2D")
     import doctest
