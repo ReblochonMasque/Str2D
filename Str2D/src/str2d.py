@@ -48,19 +48,18 @@ class Str2D(object):
         space is filled up wiht `' '`.  You can change that behavior with this.
 
         Examples
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('12\\n43')
-        ... print(s)
-        ... print(s + s)
-        ... print((s * 5) / (s.V * 3))
+        >>> s = Str2D('12\\n43')
+        >>> print(s)
         12
         43
+        >>> print(s + s)
         1212
         4343
+        >>> print((s * 5) / (s.V * 5))   # previously (s.V * 5) but pycharm eatc trailing whitespace!
         1212121212
         4343434343
-        434343
-        121212
+        4343434343
+        1212121212
 
         """
         self.halign = halign
@@ -168,9 +167,8 @@ class Str2D(object):
 
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... s + '|' + s.I
+        >>> s = Str2D('abc\\ndef\\nghi')
+        >>> s + '|' + s.I
         abc|abc
         def|def
         ghi|ghi
@@ -183,7 +181,6 @@ class Str2D(object):
 
         :return: Str2D
 
-        # >>> from Str2D.src.str2d import Str2D
         >>> ss = Str2D('abc\\ndef\\nghi')
         >>> ss + '|' + ss.H
         abc|cba
@@ -198,9 +195,8 @@ class Str2D(object):
 
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... s.V
+        >>> s = Str2D('abc\\ndef\\nghi')
+        >>> s + '|' + s.V
         abc|ghi
         def|def
         ghi|abc
@@ -213,9 +209,8 @@ class Str2D(object):
 
         :return: Str2C
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... s + '|' + s.T
+        >>> s = Str2D('abc\\ndef\\nghi')
+        >>> s + '|' + s.T
         abc|adg
         def|beh
         ghi|cfi
@@ -231,9 +226,8 @@ class Str2D(object):
 
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... s + '|' + s.TV
+        >>> s = Str2D('abc\\ndef\\nghi')
+        >>> s + '|' + s.TV
         abc|cfi
         def|beh
         ghi|adg
@@ -251,9 +245,8 @@ class Str2D(object):
 
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... s + '|' + s.VH
+        >>> s = Str2D('abc\\ndef\\nghi')
+        >>> s + '|' + s.VH
         abc|ihg
         def|fed
         ghi|cba
@@ -271,9 +264,8 @@ class Str2D(object):
 
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... s + '|' + s.VT
+        >>> s = Str2D('abc\\ndef\\nghi')
+        >>> s + '|' + s.VT
         abc|gda
         def|heb
         ghi|ifc
@@ -291,9 +283,9 @@ class Str2D(object):
 
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... s + '|' + s.HVT
+        # >>> from Str2D.src.str2d import Str2D
+        >>> s = Str2D('abc\\ndef\\nghi')
+        >>> s + '|' + s.HVT
         abc|ifc
         def|heb
         ghi|gda
@@ -314,13 +306,12 @@ class Str2D(object):
         :param axis: 1 is for columns, 0 is for rows
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... Str2D.hjoin(
-        ...     '|', [s, s.roll(n=1, axis=0), s.roll(n=1, axis=1)])
+        >>> s = Str2D('''abc\\ndef\\nghi''')
+        >>> Str2D.hjoin('|', [s, s.roll(n=1, axis=0), s.roll(n=1, axis=1)])
         abc|def|bca
         def|ghi|efd
         ghi|abc|hig
+
         """
         if axis == 1:
             n = n % self.width
@@ -338,9 +329,8 @@ class Str2D(object):
         :param n: Number of columns to shift.
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... s + '|' + s.hroll(2)
+        >>> s = Str2D('''abc\\ndef\\nghi''')
+        >>> s + '|' + s.hroll(2)
         abc|cab
         def|fde
         ghi|igh
@@ -354,9 +344,8 @@ class Str2D(object):
         :param n: Number of rows to shift.
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... s + '|' + s.vroll(2)
+        >>> s = Str2D('abc\\ndef\\nghi')
+        >>> s + '|' + s.vroll(2)
         abc|ghi
         def|abc
         ghi|def
@@ -370,9 +359,8 @@ class Str2D(object):
             randomization.  seed takes anything that is hashable.
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... ss = Str2D('abc\\ndef\\nghi')
-        ... ss + '|' + ss.shuffle(seed=3.14)
+        >>> ss = Str2D('abc\\ndef\\nghi')
+        >>> ss + '|' + ss.shuffle(seed=3.14)
         abc|cfa
         def|hbe
         ghi|gid
@@ -405,9 +393,8 @@ class Str2D(object):
         :param side: add to the `'left'` or `'right'` side
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... s + s.H
+        >>> s = Str2D('abc\\ndef\\nghi')
+        >>> s + s.H
         abccba
         deffed
         ghiihg
@@ -441,9 +428,8 @@ class Str2D(object):
         :param other: Thing to be added
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... 'hello\\nworld' + s
+        >>> s = Str2D('abc\\ndef\\nghi')
+        >>> 'hello\\nworld' + s
         helloabc
         worlddef
              ghi
@@ -457,9 +443,8 @@ class Str2D(object):
         :param n: number of times to repeat `self`
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... s * 3
+        >>> s = Str2D('abc\\ndef\\nghi')
+        >>> s * 3
         abcabcabc
         defdefdef
         ghighighi
@@ -477,9 +462,8 @@ class Str2D(object):
         :param n: number of times to repeat `self`
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... 3 * s
+        >>> s = Str2D('abc\\ndef\\nghi')
+        >>> 3 * s
         abcabcabc
         defdefdef
         ghighighi
@@ -494,9 +478,8 @@ class Str2D(object):
         :param side: place to the `'left'` (above) or `'right'` (below)
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... s / s.V
+        >>> s = Str2D('abc\\ndef\\nghi')
+        >>> s / s.V
         abc
         def
         ghi
@@ -526,14 +509,13 @@ class Str2D(object):
         :param other: Thing to be placed above
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... 'hello\\nworld' / s
+        >>> s = Str2D('abcde\\nfghij\\nklmno')
+        >>> 'hello\\nworld' / s
         hello
         world
-        abc
-        def
-        ghi
+        abcde
+        fghij
+        klmno
         """
         return self.__truediv__(other, side='right')
 
@@ -544,9 +526,8 @@ class Str2D(object):
         :param n: number of times to repeat `self`
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abcdefghij')
-        ... s // 3
+        >>> s = Str2D('abcdefghij')
+        >>> s // 3
         abcdefghij
         abcdefghij
         abcdefghij
@@ -564,9 +545,8 @@ class Str2D(object):
         :param n: number of times to repeat `self`
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abcdefghij')
-        ... 3 // s
+        >>> s = Str2D('abcdefghij')
+        >>> 3 // s
         abcdefghij
         abcdefghij
         abcdefghij
@@ -580,9 +560,8 @@ class Str2D(object):
         :param other: Thing to be compared
         :return: bool
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abcdefghij')
-        ... s == 'abcdefghij'
+        >>> s = Str2D('abcdefghij')
+        >>> s == 'abcdefghij'
         True
         """
         if isinstance(other, str):
@@ -599,9 +578,8 @@ class Str2D(object):
         :param other: Thing to be compared
         :return: bool
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abcdefghij')
-        ... s != 'abcdefghij'
+        >>> s = Str2D('abcdefghij')
+        >>> s != 'abcdefghij'
         False
         """
         return not self == other
@@ -618,10 +596,9 @@ class Str2D(object):
         :param side: Left or Right side
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... t = Str2D('123\\n456\\n789')
-        ... s.add(t, sep='|')
+        >>> s = Str2D('abc\\ndef\\nghi')
+        >>> t = Str2D('123\\n456\\n789')
+        >>> s.add(t, sep='|')
         abc|123
         def|456
         ghi|789
@@ -649,10 +626,9 @@ class Str2D(object):
         :param sep: Thing that separates operands
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... t = Str2D('123\\n456\\n789')
-        ... s.radd(t, sep='|')
+        >>> s = Str2D('abc\\ndef\\nghi')
+        >>> t = Str2D('123\\n456\\n789')
+        >>> s.radd(t, sep='|')
         123|abc
         456|def
         789|ghi
@@ -671,10 +647,9 @@ class Str2D(object):
         :param side: Left (above) or Right (below)
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... t = Str2D('123\\n456\\n789')
-        ... s.div(t, sep='=')
+        >>> s = Str2D('abc\\ndef\\nghi')
+        >>> t = Str2D('123\\n456\\n789')
+        >>> s.div(t, sep='=')
         abc
         def
         ghi
@@ -706,10 +681,9 @@ class Str2D(object):
         :param side: Left (above) or Right (below)
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... t = Str2D('123\\n456\\n789')
-        ... s.rdiv(t, sep='=')
+        >>> s = Str2D('abc\\ndef\\nghi')
+        >>> t = Str2D('123\\n456\\n789')
+        >>> s.rdiv(t, sep='=')
         123
         456
         789
@@ -767,9 +741,8 @@ class Str2D(object):
         :param br: Bottom right corner
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('a')
-        ... s.box('═', '║', '╔', '╗', '╚', '╝')
+        >>> s = Str2D('a')
+        >>> s.box('═', '║', '╔', '╗', '╚', '╝')
         ╔═╗
         ║a║
         ╚═╝
@@ -789,9 +762,8 @@ class Str2D(object):
         :param n: Number of buffer layers
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('a')
-        ... s.buffer('*', 2)
+        >>> s = Str2D('a')
+        >>> s.buffer('*', 2)
         *****
         *****
         **a**
@@ -812,9 +784,8 @@ class Str2D(object):
         :param char: Character to use as border
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('a\\nb\\nc')
-        ... s._border('right', '|')
+        >>> s = Str2D('a\\nb\\nc')
+        >>> s._border('right', '|')
         |
         |
         |
@@ -835,9 +806,8 @@ class Str2D(object):
         :param char: Character to use for border
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('a\\nb\\nc')
-        ... s.border_left('|')
+        >>> s = Str2D('a\\nb\\nc')
+        >>> s.border_left('|')
         |
         |
         |
@@ -850,9 +820,8 @@ class Str2D(object):
         :param char: Character to use for border
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('a\\nb\\nc')
-        ... s.border_right('|')
+        >>> s = Str2D('a\\nb\\nc')
+        >>> s.border_right('|')
         |
         |
         |
@@ -865,9 +834,8 @@ class Str2D(object):
         :param char: Character to use for border
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc')
-        ... s.border_top('-')
+        >>> s = Str2D('abc')
+        >>> s.border_top('-')
         ---
         """
         return self._border('top', char)
@@ -878,9 +846,8 @@ class Str2D(object):
         :param char: Character to use for border
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc')
-        ... s.border_bottom('-')
+        >>> s = Str2D('abc')
+        >>> s.border_bottom('-')
         ---
         """
         return self._border('bottom', char)
@@ -890,9 +857,8 @@ class Str2D(object):
 
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('a')
-        ... s.box_dbl()
+        >>> s = Str2D('a')
+        >>> s.box_dbl()
         ╔═╗
         ║a║
         ╚═╝
@@ -904,9 +870,8 @@ class Str2D(object):
 
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('a')
-        ... s.box_sgl()
+        >>> s = Str2D('a')
+        >>> s.box_sgl()
         ┌─┐
         │a│
         └─┘
@@ -919,9 +884,8 @@ class Str2D(object):
         :param char: Character to fill with
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abcde\\nfghij\\nklmno\\npqrst\\nuvwxy')
-        ... s + '|' + s.fill('.')
+        >>> s = Str2D('abcde\\nfghij\\nklmno\\npqrst\\nuvwxy')
+        >>> s + '|' + s.fill('.')
         abcde|.....
         fghij|.....
         klmno|.....
@@ -945,9 +909,8 @@ class Str2D(object):
         :param args: arguments passed to `str.strip`
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('     \\nfghi \\n lmno\\n ')
-        ... s.strip2d()
+        >>> s = Str2D('     \\nfghi \\n lmno\\n ')
+        >>> s.strip2d()
         fghi
         lmno
         """
@@ -962,9 +925,8 @@ class Str2D(object):
         :param args: arguments passed to `str.strip`
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('fghi   \\n   lmno')
-        ... s.strip()
+        >>> s = Str2D('fghi   \\n   lmno')
+        >>> s.strip()
         fghi
         lmno
         """
@@ -980,9 +942,8 @@ class Str2D(object):
         :param kwargs: arguments passed to `str.replace`
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('1-2-3-4\\n5-6-7-8')
-        ... s.replace('-', '*')
+        >>> s = Str2D('1-2-3-4\\n5-6-7-8')
+        >>> s.replace('-', '*')
         1*2*3*4
         5*6*7*8
         """
@@ -998,9 +959,8 @@ class Str2D(object):
         :param kwargs: arguments passed to `str.lower`
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('ABC\\n1D3')
-        ... s.lower()
+        >>> s = Str2D('ABC\\n1D3')
+        >>> s.lower()
         abc
         1d3
         """
@@ -1016,9 +976,8 @@ class Str2D(object):
         :param kwargs: arguments passed to `str.upper`
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\n1d3')
-        ... s.upper()
+        >>> s = Str2D('abc\\n1d3')
+        >>> s.upper()
         ABC
         1D3
         """
@@ -1034,9 +993,8 @@ class Str2D(object):
         :param kwargs: arguments passed to `str.title`
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('abc\\n1d3')
-        ... s.title()
+        >>> s = Str2D('abc\\n1d3')
+        >>> s.title()
         Abc
         1D3
         """
@@ -1052,9 +1010,8 @@ class Str2D(object):
         :param kwargs: arguments passed to `str.count`
         :return: int
 
-        >>> from Str2D.src.str2d import Str2D
-        ... s = Str2D('a-b-c-d\\n1-2-3-4')
-        ... s.count('-')
+        >>> s = Str2D('a-b-c-d\\n1-2-3-4')
+        >>> s.count('-')
         6
         """
         def _count(s):
@@ -1071,15 +1028,13 @@ class Str2D(object):
         :param axis: Either 0 or 1 representing rows or columns respectively.
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
         >>> s = Str2D('ab\\ncd')
-        ... Str2D._join(' | ', [s] * 3)
+        >>> Str2D._join(' | ', [s] * 3)
         ab | ab | ab
         cd | cd | cd
 
-        >>> from Str2D.src.str2d import Str2D
         >>> s = Str2D('ab\\ncd')
-        ... Str2D._join('-', [s] * 3, axis=0)
+        >>> Str2D._join('-', [s] * 3, axis=0)
         ab
         cd
         --
@@ -1115,7 +1070,6 @@ class Str2D(object):
         :param others: list of objects to for which to determine width
         :return: list
 
-        >>> from Str2D.src.str2d import Str2D
         >>> s1 = Str2D('a', hfill='*')
         >>> s2 = Str2D('bbbbb')
         >>> s1, s2 = Str2D.equal_width([s1, s2])
@@ -1135,7 +1089,6 @@ class Str2D(object):
         :param others: list of objects to be added together
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
         >>> s = Str2D('a')
         >>> Str2D.sum([s] * 10)
         aaaaaaaaaa
@@ -1152,7 +1105,6 @@ class Str2D(object):
         :param others: list of objects to join
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
         >>> s = Str2D('a')
         >>> Str2D.hjoin('-', [s] * 10)
         a-a-a-a-a-a-a-a-a-a
@@ -1167,7 +1119,6 @@ class Str2D(object):
         :param others: list of objects to join
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
         >>> s = Str2D('abc')
         >>> Str2D.vjoin('-', [s] * 3)
         abc
@@ -1184,7 +1135,6 @@ class Str2D(object):
         :param others: list of objects to join
         :return: Str2D
 
-        >>> from Str2D.src.str2d import Str2D
         >>> s = Str2D('a\\nb\\nc')
         >>> s.join([(s * 2).fill('#')] * 4)
         ##a##a##a##
@@ -1233,6 +1183,12 @@ class Str2D(object):
 
 
 if __name__ == '__main__':
+
+    # >>> s = Str2D('''abc\n123\nghi''')
+    # ... Str2D.hjoin('|', [s, s.roll(n=1, axis=0), s.roll(n=1, axis=1)])
+    # abc | 123 | bca
+    # 123 | ghi | 231
+    # ghi | abc | hig
 
     print("running str2D")
     import doctest
