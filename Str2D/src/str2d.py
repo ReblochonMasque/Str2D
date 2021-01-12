@@ -48,7 +48,7 @@ class Str2D(object):
         space is filled up wiht `' '`.  You can change that behavior with this.
 
         Examples
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('12\\n43')
         ... print(s)
         ... print(s + s)
@@ -86,7 +86,7 @@ class Str2D(object):
 # Internals
 ################################################################################
 
-    def _norm_width(self, min_width: int = None) -> 'src':
+    def _norm_width(self, min_width: int = None) -> 'Str2D':
         """Internal method that handles making width of all rows the same.  It
         will respect the alignment and fill preferences specified when the
         instance was created.
@@ -108,7 +108,7 @@ class Str2D(object):
 
         return self
 
-    def _norm_height(self, min_height: int) -> 'src':
+    def _norm_height(self, min_height: int) -> 'Str2D':
         """Internal method that handles making number of lines the same as other
         src instances that are being combined.  It will respect the alignment
         and fill preferences specified when the instance was created.
@@ -162,13 +162,13 @@ class Str2D(object):
 ################################################################################
 
     @property
-    def I(self) -> 'src':
+    def I(self) -> 'Str2D':
         """Identity method.  It exists mostly to make myself feel better about
         having a complete set of 8 transformations.  See below for the others.
 
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\ndef\\nghi')
         ... s + '|' + s.I
         abc|abc
@@ -178,14 +178,14 @@ class Str2D(object):
         return self
 
     @property
-    def H(self) -> 'src':
+    def H(self) -> 'Str2D':
         """Horizontal flip or "mirror" method.
 
         :return: Str2D
 
-        >>> from src import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... s + '|' + s.H
+        # >>> from Str2D.src.str2d import Str2D
+        >>> ss = Str2D('abc\\ndef\\nghi')
+        >>> ss + '|' + ss.H
         abc|cba
         def|fed
         ghi|ihg
@@ -193,12 +193,12 @@ class Str2D(object):
         return type(self)(s[::-1] for s in self.s)
 
     @property
-    def V(self) -> 'src':
+    def V(self) -> 'Str2D':
         """Vertical flip.
 
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\ndef\\nghi')
         ... s.V
         abc|ghi
@@ -208,12 +208,12 @@ class Str2D(object):
         return type(self)(self.s[::-1])
 
     @property
-    def T(self) -> 'src':
+    def T(self) -> 'Str2D':
         """Transpose
 
         :return: Str2C
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\ndef\\nghi')
         ... s + '|' + s.T
         abc|adg
@@ -223,7 +223,7 @@ class Str2D(object):
         return type(self)(map(''.join, zip(*self.s)))
 
     @property
-    def TV(self) -> 'src':
+    def TV(self) -> 'Str2D':
         """Transpose followed by a Vertical flip results in π/2 counter
         clockwise rotation.
 
@@ -231,7 +231,7 @@ class Str2D(object):
 
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\ndef\\nghi')
         ... s + '|' + s.TV
         abc|cfi
@@ -243,7 +243,7 @@ class Str2D(object):
     HT = TV
 
     @property
-    def VH(self) -> 'src':
+    def VH(self) -> 'Str2D':
         """Vertical flip followed by a Horizontal flip results in a π rotation
         (either direction).
 
@@ -251,7 +251,7 @@ class Str2D(object):
 
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\ndef\\nghi')
         ... s + '|' + s.VH
         abc|ihg
@@ -263,7 +263,7 @@ class Str2D(object):
     HV = VH
 
     @property
-    def VT(self) -> 'src':
+    def VT(self) -> 'Str2D':
         """Vertical flip followed by a Transpose results in a π/2 clockwise
         rotation.
 
@@ -271,7 +271,7 @@ class Str2D(object):
 
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\ndef\\nghi')
         ... s + '|' + s.VT
         abc|gda
@@ -283,7 +283,7 @@ class Str2D(object):
     TH = VT
 
     @property
-    def HVT(self) -> 'src':
+    def HVT(self) -> 'Str2D':
         """Horizontal flip followed by a Vertical flip followed by a Transpoose
         results in a Transpose along secondary diagonal.
 
@@ -291,7 +291,7 @@ class Str2D(object):
 
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\ndef\\nghi')
         ... s + '|' + s.HVT
         abc|ifc
@@ -306,7 +306,7 @@ class Str2D(object):
 # Other matrix like operations
 ################################################################################
 
-    def roll(self, n: int, axis: int=1) -> 'src':
+    def roll(self, n: int, axis: int=1) -> 'Str2D':
         """Shift columns or rows by `n` amount.  Columns or rows at the front
         will roll over to the back.
 
@@ -314,7 +314,7 @@ class Str2D(object):
         :param axis: 1 is for columns, 0 is for rows
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\ndef\\nghi')
         ... Str2D.hjoin(
         ...     '|', [s, s.roll(n=1, axis=0), s.roll(n=1, axis=1)])
@@ -331,14 +331,14 @@ class Str2D(object):
             i = self.s[n:] + self.s[:n]
         return type(self)(i, **self._kwargs)
 
-    def hroll(self, n: int) -> 'src':
+    def hroll(self, n: int) -> 'Str2D':
         """Shift columns by `n` amount.  Columns at the front roll over to the
         back.  Leverages `roll` method
 
         :param n: Number of columns to shift.
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\ndef\\nghi')
         ... s + '|' + s.hroll(2)
         abc|cab
@@ -347,14 +347,14 @@ class Str2D(object):
         """
         return self.roll(n, axis=1)
 
-    def vroll(self, n: int) -> 'src':
+    def vroll(self, n: int) -> 'Str2D':
         """Shift rows by `n` amount.  Rows at the front roll over to the back.
         Leverages `roll` method
 
         :param n: Number of rows to shift.
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\ndef\\nghi')
         ... s + '|' + s.vroll(2)
         abc|ghi
@@ -363,16 +363,16 @@ class Str2D(object):
         """
         return self.roll(n, axis=0)
 
-    def shuffle(self, seed: object = None) -> 'src':
+    def shuffle(self, seed: object = None) -> 'Str2D':
         """Randomly shuffles characters throughout the Str2D.
 
         :param seed: seed for `random` module if you want to target a specific
             randomization.  seed takes anything that is hashable.
         :return: Str2D
 
-        >>> from src import Str2D
-        ... s = Str2D('abc\\ndef\\nghi')
-        ... s + '|' + s.shuffle(seed=3.14)
+        >>> from Str2D.src.str2d import Str2D
+        ... ss = Str2D('abc\\ndef\\nghi')
+        ... ss + '|' + ss.shuffle(seed=3.14)
         abc|cfa
         def|hbe
         ghi|gid
@@ -381,7 +381,7 @@ class Str2D(object):
         i = utils.chunk(s, self.width)
         return type(self)(i, **self._kwargs)
 
-    def asstr2d(self, other: object) -> 'src':
+    def asstr2d(self, other: object) -> 'Str2D':
         """If `other` is already a `src` it returns the same thing.  Otherwise
         it will construct a new `src` from whatever `other` is.
 
@@ -397,7 +397,7 @@ class Str2D(object):
 # Operations
 ################################################################################
 
-    def __add__(self, other: object, side: str = 'left') -> 'src':
+    def __add__(self, other: object, side: str = 'left') -> 'Str2D':
         """This method shouldn't typically be accessed directly but rather
         through the `+` operator.
 
@@ -405,7 +405,7 @@ class Str2D(object):
         :param side: add to the `'left'` or `'right'` side
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\ndef\\nghi')
         ... s + s.H
         abccba
@@ -433,7 +433,7 @@ class Str2D(object):
             **self._kwargs
         )
 
-    def __radd__(self, other: object) -> 'src':
+    def __radd__(self, other: object) -> 'Str2D':
         """If you add a non Str2D object on the left side the other object's
         __add__ method will likely send it here.  As with `__add__`, you are not
         supposed to access this method directly.
@@ -441,7 +441,7 @@ class Str2D(object):
         :param other: Thing to be added
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\ndef\\nghi')
         ... 'hello\\nworld' + s
         helloabc
@@ -450,14 +450,14 @@ class Str2D(object):
         """
         return self.__add__(other, side='right')
 
-    def __mul__(self, n: int) -> 'src':
+    def __mul__(self, n: int) -> 'Str2D':
         """This method shoudln't typically be accessed directly but rather
         through the `*` operator.
 
         :param n: number of times to repeat `self`
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\ndef\\nghi')
         ... s * 3
         abcabcabc
@@ -470,14 +470,14 @@ class Str2D(object):
             add = lambda self, other: self + other
             return reduce(add, (self for _ in range(n)))
 
-    def __rmul__(self, n: int) -> 'src':
+    def __rmul__(self, n: int) -> 'Str2D':
         """This method shoudln't typically be accessed directly but rather
         through the `*` operator.
 
         :param n: number of times to repeat `self`
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\ndef\\nghi')
         ... 3 * s
         abcabcabc
@@ -486,7 +486,7 @@ class Str2D(object):
         """
         return self * n
 
-    def __truediv__(self, other: object, side: str = 'left') -> 'src':
+    def __truediv__(self, other: object, side: str = 'left') -> 'Str2D':
         """This method shouldn't typically be accessed directly but rather
         through the `/` operator.
 
@@ -494,7 +494,7 @@ class Str2D(object):
         :param side: place to the `'left'` (above) or `'right'` (below)
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\ndef\\nghi')
         ... s / s.V
         abc
@@ -519,14 +519,14 @@ class Str2D(object):
         other = self.asstr2d(other)
         return type(self)(tup, **self._kwargs)
 
-    def __rtruediv__(self, other: object) -> 'src':
+    def __rtruediv__(self, other: object) -> 'Str2D':
         """This method shouldn't typically be accessed directly but rather
         through the `/` operator.
 
         :param other: Thing to be placed above
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\ndef\\nghi')
         ... 'hello\\nworld' / s
         hello
@@ -537,14 +537,14 @@ class Str2D(object):
         """
         return self.__truediv__(other, side='right')
 
-    def __floordiv__(self, n: int) -> 'src':
+    def __floordiv__(self, n: int) -> 'Str2D':
         """This method shoudln't typically be accessed directly but rather
         through the `//` operator.
 
         :param n: number of times to repeat `self`
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abcdefghij')
         ... s // 3
         abcdefghij
@@ -557,14 +557,14 @@ class Str2D(object):
             div = lambda self, other: self / other
             return reduce(div, (self for _ in range(n)))
 
-    def __rfloordiv__(self, n: int) -> 'src':
+    def __rfloordiv__(self, n: int) -> 'Str2D':
         """This method shoudln't typically be accessed directly but rather
         through the `//` operator.
 
         :param n: number of times to repeat `self`
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abcdefghij')
         ... 3 // s
         abcdefghij
@@ -580,7 +580,7 @@ class Str2D(object):
         :param other: Thing to be compared
         :return: bool
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abcdefghij')
         ... s == 'abcdefghij'
         True
@@ -599,7 +599,7 @@ class Str2D(object):
         :param other: Thing to be compared
         :return: bool
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abcdefghij')
         ... s != 'abcdefghij'
         False
@@ -609,7 +609,7 @@ class Str2D(object):
     def add(
             self, other: object,
             sep: object = '', side: str = 'left'
-    ) -> 'src':
+    ) -> 'Str2D':
         """This is the public access method to `+`.  The difference being that
         you can specify a `sep` parameter to place between operands.
 
@@ -618,7 +618,7 @@ class Str2D(object):
         :param side: Left or Right side
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\ndef\\nghi')
         ... t = Str2D('123\\n456\\n789')
         ... s.add(t, sep='|')
@@ -641,7 +641,7 @@ class Str2D(object):
         else:
             return self.__add__(other)
 
-    def radd(self, other: object, sep: object = '') -> 'src':
+    def radd(self, other: object, sep: object = '') -> 'Str2D':
         """This is the public access method to `+`.  The difference being that
         you can specify a `sep` parameter to place between operands.
 
@@ -649,7 +649,7 @@ class Str2D(object):
         :param sep: Thing that separates operands
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\ndef\\nghi')
         ... t = Str2D('123\\n456\\n789')
         ... s.radd(t, sep='|')
@@ -662,7 +662,7 @@ class Str2D(object):
     def div(
             self, other: object, sep: object = '',
             side: str = 'left'
-    ) -> 'src':
+    ) -> 'Str2D':
         """This is the public access method to `/`.  The difference being that
         you can specify a `sep` parameter to place between operands.
 
@@ -671,7 +671,7 @@ class Str2D(object):
         :param side: Left (above) or Right (below)
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\ndef\\nghi')
         ... t = Str2D('123\\n456\\n789')
         ... s.div(t, sep='=')
@@ -698,7 +698,7 @@ class Str2D(object):
         else:
             return self.__truediv__(other)
 
-    def rdiv(self, other: object, sep: object = '') -> 'src':
+    def rdiv(self, other: object, sep: object = '') -> 'Str2D':
         """This is the public access method to `/`.  The difference being that
         you can specify a `sep` parameter to place between operands.
 
@@ -706,7 +706,7 @@ class Str2D(object):
         :param side: Left (above) or Right (below)
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\ndef\\nghi')
         ... t = Str2D('123\\n456\\n789')
         ... s.rdiv(t, sep='=')
@@ -756,7 +756,7 @@ class Str2D(object):
 
     def box(self,
             tb: str, lr: str, tl: str,
-            tr: str, bl: str, br: str) -> 'src':
+            tr: str, bl: str, br: str) -> 'Str2D':
         """Use parameters to encompass `self` with a box
 
         :param tb: Top and bottom edge
@@ -767,7 +767,7 @@ class Str2D(object):
         :param br: Bottom right corner
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('a')
         ... s.box('═', '║', '╔', '╗', '╚', '╝')
         ╔═╗
@@ -780,7 +780,7 @@ class Str2D(object):
         tups = (t,) + tuple(map(f, self.s)) + (b,)
         return type(self)(tups, **self._kwargs)
 
-    def buffer(self, char: str, n: int = 1) -> 'src':
+    def buffer(self, char: str, n: int = 1) -> 'Str2D':
         """Similar to `Str2D.box` but only uses one character for all corners
         and edges.  Further, we specify how many iterations we want with the
         `n` parameter.
@@ -789,7 +789,7 @@ class Str2D(object):
         :param n: Number of buffer layers
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('a')
         ... s.buffer('*', 2)
         *****
@@ -803,7 +803,7 @@ class Str2D(object):
         else:
             return self
 
-    def _border(self, side: str, char: str) -> 'src':
+    def _border(self, side: str, char: str) -> 'Str2D':
         """Single side border. Can be used to separate between two Str2Ds.
         Note that this returns an object with unit width or height.  It is
         not added to the calling instance for your.
@@ -812,7 +812,7 @@ class Str2D(object):
         :param char: Character to use as border
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('a\\nb\\nc')
         ... s._border('right', '|')
         |
@@ -829,13 +829,13 @@ class Str2D(object):
             raise ValueError(
                 f'side: "{side}" must come from {left_right | top_bottom}')
 
-    def border_left(self, char: str) -> 'src':
+    def border_left(self, char: str) -> 'Str2D':
         """Creates a Str2D object that can act as a border.
 
         :param char: Character to use for border
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('a\\nb\\nc')
         ... s.border_left('|')
         |
@@ -844,13 +844,13 @@ class Str2D(object):
         """
         return self._border('left', char)
 
-    def border_right(self, char: str) -> 'src':
+    def border_right(self, char: str) -> 'Str2D':
         """Creates a Str2D object that can act as a border.
 
         :param char: Character to use for border
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('a\\nb\\nc')
         ... s.border_right('|')
         |
@@ -859,38 +859,38 @@ class Str2D(object):
         """
         return self._border('right', char)
 
-    def border_top(self, char: str) -> 'src':
+    def border_top(self, char: str) -> 'Str2D':
         """Creates a Str2D object that can act as a border.
 
         :param char: Character to use for border
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc')
         ... s.border_top('-')
         ---
         """
         return self._border('top', char)
 
-    def border_bottom(self, char: str) -> 'src':
+    def border_bottom(self, char: str) -> 'Str2D':
         """Creates a Str2D object that can act as a border.
 
         :param char: Character to use for border
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc')
         ... s.border_bottom('-')
         ---
         """
         return self._border('bottom', char)
 
-    def box_dbl(self) -> 'src':
+    def box_dbl(self) -> 'Str2D':
         """Convenience method to perform what can be done with Str2D.box
 
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('a')
         ... s.box_dbl()
         ╔═╗
@@ -899,12 +899,12 @@ class Str2D(object):
         """
         return self.box('═', '║', '╔', '╗', '╚', '╝')
 
-    def box_sgl(self) -> 'src':
+    def box_sgl(self) -> 'Str2D':
         """Convenience method to perform what can be done with Str2D.box
 
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('a')
         ... s.box_sgl()
         ┌─┐
@@ -913,13 +913,13 @@ class Str2D(object):
         """
         return self.box('─', '│', '┌', '┐', '└', '┘')
 
-    def fill(self, char: str = ' ') -> 'src':
+    def fill(self, char: str = ' ') -> 'Str2D':
         """Fills entire space of calling object with passed character.
 
         :param char: Character to fill with
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abcde\\nfghij\\nklmno\\npqrst\\nuvwxy')
         ... s + '|' + s.fill('.')
         abcde|.....
@@ -937,7 +937,7 @@ class Str2D(object):
 # String analogs
 ################################################################################
 
-    def strip2d(self, *args) -> 'src':
+    def strip2d(self, *args) -> 'Str2D':
         """Perform something similar to `str.strip` but apply it on the top and
         bottom of Str2D as well as left and right.  It will readjust to respect
         alignment and fill preferences.
@@ -945,7 +945,7 @@ class Str2D(object):
         :param args: arguments passed to `str.strip`
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('     \\nfghi \\n lmno\\n ')
         ... s.strip2d()
         fghi
@@ -956,13 +956,13 @@ class Str2D(object):
             **self._kwargs
         ).strip(*args)
 
-    def strip(self, *args) -> 'src':
+    def strip(self, *args) -> 'Str2D':
         """Apply `str.strip` to each row.
 
         :param args: arguments passed to `str.strip`
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('fghi   \\n   lmno')
         ... s.strip()
         fghi
@@ -973,14 +973,14 @@ class Str2D(object):
 
         return type(self)(map(_strip, self.s), **self._kwargs)
 
-    def replace(self, *args, **kwargs) -> 'src':
+    def replace(self, *args, **kwargs) -> 'Str2D':
         """Apply `str.replace` to each row.
 
         :param args: arguments passed to `str.replace`
         :param kwargs: arguments passed to `str.replace`
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('1-2-3-4\\n5-6-7-8')
         ... s.replace('-', '*')
         1*2*3*4
@@ -991,14 +991,14 @@ class Str2D(object):
 
         return type(self)(map(_replace, self.s), **self._kwargs)
 
-    def lower(self, *args, **kwargs) -> 'src':
+    def lower(self, *args, **kwargs) -> 'Str2D':
         """Apply `str.lower` to each row.
 
         :param args: arguments passed to `str.lower`
         :param kwargs: arguments passed to `str.lower`
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('ABC\\n1D3')
         ... s.lower()
         abc
@@ -1009,14 +1009,14 @@ class Str2D(object):
 
         return type(self)(map(_lower, self.s), **self._kwargs)
 
-    def upper(self, *args, **kwargs) -> 'src':
+    def upper(self, *args, **kwargs) -> 'Str2D':
         """Apply `str.upper` to each row.
 
         :param args: arguments passed to `str.upper`
         :param kwargs: arguments passed to `str.upper`
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\n1d3')
         ... s.upper()
         ABC
@@ -1027,14 +1027,14 @@ class Str2D(object):
 
         return type(self)(map(_upper, self.s), **self._kwargs)
 
-    def title(self, *args, **kwargs) -> 'src':
+    def title(self, *args, **kwargs) -> 'Str2D':
         """Apply `str.title` to each row.
 
         :param args: arguments passed to `str.title`
         :param kwargs: arguments passed to `str.title`
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('abc\\n1d3')
         ... s.title()
         Abc
@@ -1052,7 +1052,7 @@ class Str2D(object):
         :param kwargs: arguments passed to `str.count`
         :return: int
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         ... s = Str2D('a-b-c-d\\n1-2-3-4')
         ... s.count('-')
         6
@@ -1063,7 +1063,7 @@ class Str2D(object):
         return sum(map(_count, self.s))
 
     @classmethod
-    def _join(cls, char: str, others: tuple, axis: int = 1) -> 'src':
+    def _join(cls, char: str, others: tuple, axis: int = 1) -> 'Str2D':
         """Will join Str2D objects either horizontally or vertically.
 
         :param char: Character that will be used to join with.
@@ -1071,13 +1071,13 @@ class Str2D(object):
         :param axis: Either 0 or 1 representing rows or columns respectively.
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         >>> s = Str2D('ab\\ncd')
         ... Str2D._join(' | ', [s] * 3)
         ab | ab | ab
         cd | cd | cd
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         >>> s = Str2D('ab\\ncd')
         ... Str2D._join('-', [s] * 3, axis=0)
         ab
@@ -1115,7 +1115,7 @@ class Str2D(object):
         :param others: list of objects to for which to determine width
         :return: list
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         >>> s1 = Str2D('a', hfill='*')
         >>> s2 = Str2D('bbbbb')
         >>> s1, s2 = Str2D.equal_width([s1, s2])
@@ -1129,13 +1129,13 @@ class Str2D(object):
                 for s in others]
 
     @classmethod
-    def sum(cls, others: list) -> 'src':
+    def sum(cls, others: list) -> 'Str2D':
         """Iteratively adds all items in the list together
 
         :param others: list of objects to be added together
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         >>> s = Str2D('a')
         >>> Str2D.sum([s] * 10)
         aaaaaaaaaa
@@ -1145,14 +1145,14 @@ class Str2D(object):
         return reduce(f, others)
 
     @classmethod
-    def hjoin(cls, char: str, others: list) -> 'src':
+    def hjoin(cls, char: str, others: list) -> 'Str2D':
         """Join others horizontally
 
         :param char: Character to join on
         :param others: list of objects to join
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         >>> s = Str2D('a')
         >>> Str2D.hjoin('-', [s] * 10)
         a-a-a-a-a-a-a-a-a-a
@@ -1160,14 +1160,14 @@ class Str2D(object):
         return cls._join(char, others, 1)
 
     @classmethod
-    def vjoin(cls, char: str, others: list) -> 'src':
+    def vjoin(cls, char: str, others: list) -> 'Str2D':
         """Joint others vertically
 
         :param char: Character to join on
         :param others: list of objects to join
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         >>> s = Str2D('abc')
         >>> Str2D.vjoin('-', [s] * 3)
         abc
@@ -1178,13 +1178,13 @@ class Str2D(object):
         """
         return cls._join(char, others, 0)
 
-    def join(self, others: list) -> 'src':
+    def join(self, others: list) -> 'Str2D':
         """Join others horizontally separated with `self`
 
         :param others: list of objects to join
         :return: Str2D
 
-        >>> from src import Str2D
+        >>> from Str2D.src.str2d import Str2D
         >>> s = Str2D('a\\nb\\nc')
         >>> s.join([(s * 2).fill('#')] * 4)
         ##a##a##a##
@@ -1197,8 +1197,8 @@ class Str2D(object):
 # Masking
 ################################################################################
 
-    def mask(self, msk: 'src',
-             char: str = ' ', replace: str = ' ') -> 'src':
+    def mask(self, msk: 'Mask',
+             char: str = ' ', replace: str = ' ') -> 'Str2D':
         """Use another src object to mask.
 
         :param msk: src object that will act as mask
@@ -1215,7 +1215,7 @@ class Str2D(object):
         i = utils.chunk(s, self.width)
         return type(self)(i, **self._kwargs)
 
-    def layer(self, msk: 'src', char: str = ' ') -> 'src':
+    def layer(self, msk: 'Mask', char: str = ' ') -> 'Str2D':
         """Instead of masking, we can stack objects.
 
         :param msk: src object that will act as mask
@@ -1235,3 +1235,5 @@ class Str2D(object):
 if __name__ == '__main__':
 
     print("running str2D")
+    import doctest
+    print(doctest.testmod())
