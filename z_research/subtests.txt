@@ -1,3 +1,25 @@
+"""
+way to run several subtests
+https://stackoverflow.com/questions/45007346/count-subtests-in-python-unittests-separately
+
+"""
+
+
+import unittest
+
+
+# class NumbersTestResult(unittest.TestResult):
+class NumbersTestResult(unittest.TextTestResult):
+
+    # def run(self, test_result=None):
+    #     return super(NumbersTest, self).run(NumbersTestResult())
+
+    def addSubTest(self, test, subtest, outcome):
+
+        # handle failures calling base class
+        super(NumbersTestResult, self).addSubTest(test, subtest, outcome)
+        # add to total number of tests run
+        self.testsRun += 1
 
 
 class NumbersTest(unittest.TestCase):
@@ -9,4 +31,12 @@ class NumbersTest(unittest.TestCase):
         for i in range(0, 6):
             with self.subTest(i=i):
                 self.assertEqual(i % 2, 0)
+
+
+# if __name__ == '__main__':
+#     unittest.main()
+if __name__ == '__main__':
+    unittest.main(testRunner=unittest.TextTestRunner(resultclass=NumbersTestResult))
+
+
 
