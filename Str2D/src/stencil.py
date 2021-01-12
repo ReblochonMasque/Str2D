@@ -1,7 +1,7 @@
 
 from typing import Sequence
 
-from src.mask import Mask
+from Str2D.src.mask import Mask
 
 
 class Stencil:

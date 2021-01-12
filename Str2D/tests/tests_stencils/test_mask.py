@@ -1,7 +1,7 @@
 import unittest
 
-from src import Mask
-from src import SOLID, PUNCHED
+from Str2D import Mask
+from Str2D import SOLID, PUNCHED
 
 
 # keep track of original defaults to reset them in tearDown()

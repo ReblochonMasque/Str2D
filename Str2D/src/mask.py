@@ -1,7 +1,7 @@
 
 
 from typing import ClassVar, Iterable, List, Sequence, Tuple, Union
-from src.perforation import SOLID, PUNCHED
+from Str2D.src.perforation import SOLID, PUNCHED
 # from perforation import SOLID, PUNCHED
 
 

@@ -1,8 +1,8 @@
 import unittest
 
-from src import Mask
-from src import SOLID, PUNCHED
-from src import Stencil
+from Str2D.src.mask import Mask
+from Str2D.src.perforation import SOLID, PUNCHED
+from Str2D.src.stencil import Stencil
 
 
 class TestStencilBase(unittest.TestCase):

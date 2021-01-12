@@ -15,13 +15,7 @@ stencil is more universally understood.
 # https://en.wikipedia.org/wiki/Jacquard_loom#Principles_of_operation
 """
 
-
-from src.mask import Mask
-from src.perforation import Perforation        #<-- maybe not needed
-from src.perforation import SOLID, PUNCHED     #<-- maybe not needed
-from src.stencil import Stencil
-from src.str2d import Str2D
-from src.utils import apply_mask, chunk, shuffle
+from Str2D.src.utils import apply_mask, chunk, shuffle
 
 
 __all__ = [

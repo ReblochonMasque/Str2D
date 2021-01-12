@@ -1,5 +1,5 @@
 from functools import reduce
-from src import utils
+from Str2D.src import utils
 from pandas import DataFrame, Series
 from numpy import ndarray
 

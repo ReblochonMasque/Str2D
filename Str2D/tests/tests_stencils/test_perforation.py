@@ -1,8 +1,8 @@
 from enum import Enum
 import unittest
 
-from src import Perforation
-from src import SOLID, PUNCHED
+from Str2D.src.perforation import Perforation
+from Str2D.src.perforation import SOLID, PUNCHED
 
 
 class TestPerforation(unittest.TestCase):
