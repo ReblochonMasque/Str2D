@@ -1,8 +1,10 @@
+"""
+A module to perform masking operations
 
+"""
 
 from typing import ClassVar, Iterable, List, Sequence, Tuple, Union
 from Str2D.src.perforation import SOLID, PUNCHED
-# from perforation import SOLID, PUNCHED
 
 
 class Mask:
@@ -19,7 +21,7 @@ class Mask:
     generic_punched_repr = '^'   # type: ClassVar[str]
     generic_solid_repr = '-'     # type: ClassVar[str]
 
-    def __init__(self, size: int=0) -> None:
+    def __init__(self, size: int = 0) -> None:
         """Make a 'blank': a solid Mask of size=size without punched positions
 
         :param size: int, the size of the mask
@@ -80,7 +82,10 @@ class Mask:
         return inverted_mask
 
     @staticmethod
-    def from_pattern(pattern: Sequence='', values_to_punch: Iterable='^') -> 'Mask':
+    def from_pattern(
+            pattern: Sequence = '',
+            values_to_punch: Iterable = '^',
+    ) -> 'Mask':
         """Mask factory that makes and returns a new Mask object from a pattern
         of values, a sequence, that can be compared to the values in to_punch to
         determine which positions to punch, and which to retain solid
@@ -114,8 +119,10 @@ class Mask:
         return mask
 
     @staticmethod
-    def from_indices(size: int=0,
-                     indices_to_punch: Iterable[int]=set()) -> 'Mask':
+    def from_indices(
+            size: int = 0,
+            indices_to_punch: Iterable[int] = None,
+) -> 'Mask':
         """Mask factory that makes a new Mask object where the positions to
         punch are at the given indices.
 
@@ -142,8 +149,11 @@ class Mask:
         mask._punch_mask(pattern=pattern)
         return mask
 
-    def apply_to(self, sequence: Sequence,
-                 substitute: str='-') -> Sequence:
+    def apply_to(
+            self,
+            sequence: Sequence,
+            substitute: str = '-',
+    ) -> Sequence:
         """applies the mask to the sequence provided, and return a new
         sequence of same length where only the elements located at punched
         positions on the mask are visible; the other elements are concealed
@@ -166,7 +176,13 @@ class Mask:
 
 
 if __name__ == '__main__':
-    pass
+
+    m = Mask.from_pattern('l^ l^b^rt^ ^^ l^ m^rt')
+    s = 'la liberte ou la mort'
+    p = m.apply_to(s, '.')
+    print(m)
+    print(s)
+    print(p)
 
     # Use A Generic Sequence
     # a = [1, 2, 3]
@@ -181,5 +197,5 @@ if __name__ == '__main__':
     # print(double({1, 2, 3}))
     # # output
     # {2, 4, 6}
-    #
+
     # must make a special case for str?
